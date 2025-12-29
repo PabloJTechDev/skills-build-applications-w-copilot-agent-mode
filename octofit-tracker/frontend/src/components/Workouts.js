@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-function buildApiUrl(resource) {
+function buildWorkoutsApiUrl() {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
   if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api/${resource}/`;
+    return `https://${codespaceName}-8000.app.github.dev/api/workouts/`;
   }
-  return `http://localhost:8000/api/${resource}/`;
+  return 'http://localhost:8000/api/workouts/';
 }
 
 function normalizeListResponse(data) {
@@ -47,7 +47,7 @@ function getRowKey(item, index) {
 }
 
 export default function Workouts() {
-  const endpoint = useMemo(() => buildApiUrl('workouts'), []);
+  const endpoint = useMemo(() => buildWorkoutsApiUrl(), []);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);

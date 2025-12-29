@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-function buildApiUrl(resource) {
+function buildUsersApiUrl() {
   const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
   if (codespaceName) {
-    return `https://${codespaceName}-8000.app.github.dev/api/${resource}/`;
+    return `https://${codespaceName}-8000.app.github.dev/api/users/`;
   }
-  return `http://localhost:8000/api/${resource}/`;
+  return 'http://localhost:8000/api/users/';
 }
 
 function normalizeListResponse(data) {
@@ -47,7 +47,7 @@ function getRowKey(item, index) {
 }
 
 export default function Users() {
-  const endpoint = useMemo(() => buildApiUrl('users'), []);
+  const endpoint = useMemo(() => buildUsersApiUrl(), []);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
